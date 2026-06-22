@@ -208,21 +208,24 @@
     }
 
     /* STATS */
-    .stats-section { background: var(--bg-dark); padding: 64px 60px; }
+    .stats-section { background: var(--orange); padding: 64px 60px; }
     .stats-eyebrow {
       font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--label); margin-bottom: 36px;
+      text-transform: uppercase; color: #f1eee4; margin-bottom: 12px;
+    }
+    .stats-headline {
+      font-size: 28px; font-weight: 700; color: #f1eee4;
+      margin-bottom: 36px; letter-spacing: -0.5px;
     }
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .stat-card {
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px; padding: 28px 24px;
+      background: #f1eee4; border-radius: 8px; padding: 28px 24px;
     }
     .stat-num {
       font-size: 56px; font-weight: 700; color: var(--orange);
       line-height: 1; letter-spacing: -2px; margin-bottom: 12px;
     }
-    .stat-text { font-size: 13px; color: rgba(241,238,228,0.5); line-height: 1.55; }
+    .stat-text { font-size: 13px; color: #5a5855; line-height: 1.55; }
 
     /* REFLECTION */
     .reflection { padding: 64px 60px; border-bottom: 1px solid var(--border); }
@@ -284,6 +287,7 @@
   <!-- HERO: title left, laptop right -->
   <section class="hero">
     <div class="hero-left">
+      <div class="eyebrow">Unicity International</div>
       <h1 class="hero-title">Distributor Enrollment Redesign</h1>
       <p class="hero-sub">A redesign of Unicity's distributor enrollment process — removing irrelevant steps, introducing mobile support, and reducing drop-off by 46% within one quarter.</p>
       <div class="tag-row">
@@ -438,7 +442,8 @@
 
   <!-- STATS -->
   <section class="stats-section">
-    <div class="stats-eyebrow">Outcome · The data told the story clearly.</div>
+    <div class="stats-eyebrow">Outcome</div>
+    <div class="stats-headline">The data told the story clearly.</div>
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-num">46%</div>
