@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beauty Industry Group — 10 Brands. 1 System. 8 Sites. | Keyko Velazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f1eee4;
+      --dark: #3a3835;
+      --orange: #e94f2d;
+      --border: #dddad2;
+      --body: #5a5855;
+      --label: #9b9690;
+      --shadow: #292827;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 68px;
+      background: var(--cream); border-bottom: 1px solid var(--dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 88px; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-monogram {
+      width: 22px; height: 22px; border-radius: 50%; border: 1.2px solid var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; font-weight: 600; color: var(--dark); flex-shrink: 0;
+    }
+    .logo-wordmark { font-size: 15px; color: var(--dark); }
+    .logo-wordmark strong { font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { font-size: 13px; color: var(--dark); text-decoration: none; }
+    .nav-links a:hover { opacity: 0.6; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--orange); color: #f1eee4 !important;
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; text-decoration: none;
+      height: 35px; padding: 0 18px; border-radius: 7.8px;
+      border: 0.648px solid white; box-shadow: 0 2.6px 0 var(--shadow);
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+
+    /* HERO — title left, device mockup right */
+    .hero {
+      padding: 108px 127px 60px;
+      display: grid; grid-template-columns: 575px 1fr;
+      gap: 60px; align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-title {
+      font-size: 64px; font-weight: 700; color: var(--dark);
+      line-height: 1.0; letter-spacing: -2px; margin-bottom: 20px;
+    }
+    .hero-sub { font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 24px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; font-weight: 500; color: var(--cream);
+      background: var(--orange); border-radius: 100px; padding: 5px 14px;
+    }
+    .hero-img img { width: 100%; height: auto; display: block; }
+
+    /* OVERVIEW BOX with SVG border */
+    .overview-wrap { padding: 48px 127px 40px; }
+    .overview-box {
+      padding: 44px 104px 44px 104px;
+      display: grid; grid-template-columns: 1fr 200px;
+      gap: 80px; position: relative;
+    }
+    .box-border {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; pointer-events: none;
+    }
+    .overview-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+    }
+    .overview-text { font-size: 14px; color: var(--body); line-height: 1.7; }
+    .meta-group { margin-bottom: 18px; }
+    .meta-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 4px;
+    }
+    .meta-val { font-size: 13px; color: var(--dark); line-height: 1.5; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 0 127px; }
+
+    /* GENERIC SECTION */
+    .cs-section { padding: 64px 127px; }
+    .eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 36px; font-weight: 700; color: var(--dark);
+      line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 18px;
+    }
+    .section-body { font-size: 15px; color: var(--body); line-height: 1.7; max-width: 1000px; }
+
+    /* FINDINGS */
+    .findings { margin-top: 32px; max-width: 760px; }
+    .findings-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 12px; }
+    .finding {
+      display: flex; gap: 20px; align-items: baseline;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .finding:first-of-type { border-top: 1px solid var(--border); }
+    .finding-n { font-size: 14px; font-weight: 700; color: var(--orange); flex-shrink: 0; width: 16px; }
+    .finding-t { font-size: 14px; color: var(--dark); line-height: 1.5; }
+
+    /* INSIGHT BANNER */
+    .insight {
+      margin: 0 127px 0;
+      background: var(--orange); border-radius: 8px;
+      padding: 28px 60px; text-align: center;
+    }
+    .insight p {
+      font-family: monospace; font-size: 16px; font-weight: 400;
+      color: #f1eee4; line-height: 1.65;
+    }
+
+    /* SOLUTION IMAGE */
+    .solution-img { margin-top: 32px; }
+    .solution-img img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+    /* 4 WORK CARDS */
+    .work-cards-wrap { margin-top: 36px; }
+    .work-cards-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .work-card {
+      padding: 40px 46px;
+      position: relative;
+    }
+    .card-svg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; pointer-events: none;
+    }
+    .card-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 8px; position: relative;
+    }
+    .card-title {
+      font-size: 18px; font-weight: 700; color: var(--dark);
+      line-height: 1.3; margin-bottom: 12px; position: relative;
+    }
+    .card-body {
+      font-size: 14px; color: var(--body); line-height: 1.65; position: relative;
+    }
+
+    /* NDA */
+    .nda-wrap {
+      margin-top: 28px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 14px 28px;
+      background: var(--orange);
+      border: 1.5px solid #f07050;
+      border-radius: 6px;
+      width: 100%;
+    }
+    .nda-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--orange);
+      background: #f1eee4; border-radius: 4px; padding: 3px 10px;
+      flex-shrink: 0;
+    }
+    .nda-text { font-size: 13px; color: #f1eee4; }
+
+    /* STATS — orange background, bordered cards */
+    .stats-section { background: var(--orange); padding: 56px 127px; }
+    .stats-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #f1eee4; margin-bottom: 10px;
+    }
+    .stats-headline {
+      font-size: 32px; font-weight: 700; color: #f1eee4;
+      margin-bottom: 40px; letter-spacing: -0.5px;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat-item {
+      background: #f1eee4;
+      border-radius: 8px; padding: 28px 24px;
+    }
+    .stat-num {
+      font-size: 64px; font-weight: 700; color: var(--orange);
+      line-height: 1; letter-spacing: -3px; margin-bottom: 10px;
+    }
+    .stat-text { font-size: 13px; color: var(--body); line-height: 1.55; }
+
+    /* REFLECTION */
+    .reflection { padding: 64px 127px; border-bottom: 1px solid var(--border); }
+
+    /* BRAND SHOWCASE */
+    .showcase-section { padding: 64px 127px; }
+    .showcase-header { text-align: center; margin-bottom: 40px; }
+    .showcase-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 10px;
+    }
+    .showcase-title {
+      font-size: 36px; font-weight: 700; color: var(--dark); letter-spacing: -0.8px;
+    }
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 32px; max-width: 900px; margin: 0 auto;
+    }
+    .brand-item { text-align: center; }
+    .brand-img { border-radius: 10px; overflow: hidden; max-width: 400px; margin: 0 auto; }
+    .brand-img img { width: 100%; height: auto; display: block; }
+    .brand-name {
+      font-size: 15px; font-weight: 700; color: var(--orange);
+      margin-top: 12px; text-align: center;
+    }
+    .brand-sub { font-size: 13px; color: var(--body); margin-top: 2px; text-align: center; }
+
+    /* NEXT */
+    .next-row {
+      padding: 48px 127px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .next-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--label); margin-bottom: 6px;
+    }
+    .next-title { font-size: 24px; font-weight: 700; color: var(--dark); letter-spacing: -0.4px; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--dark); padding: 60px 127px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cta-section h2 { font-size: 30px; font-weight: 400; color: var(--cream); max-width: 600px; }
+    .cta-section p { font-size: 15px; color: rgba(241,238,228,0.7); max-width: 600px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--cream); border-top: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span, footer a { font-size: 14px; color: var(--dark); text-decoration: none; }
+    footer a:hover { opacity: 0.6; }
+    .fdiv { display: inline-block; width: 1px; height: 14px; background: var(--dark); opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/keyko-logo.png" alt="keyko.velazquez" style="height:24px;width:auto;display:block;" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:keykovelazquez@gmail.com" class="btn">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1 class="hero-title">10 Brands. 1 System. 8 Sites.</h1>
+      <p class="hero-sub">Promoted from contractor to UI/UX Design Lead — managing digital engagement for 10 hair extension brands. Built a unified design system, established a research program, mentored an incoming designer, and led the launch of 8 brand websites.</p>
+      <div class="tag-row">
+        <span class="tag">UX Design Lead</span>
+        <span class="tag">Design Systems</span>
+        <span class="tag">Multi-Brand</span>
+        <span class="tag">E-Commerce</span>
+        <span class="tag">Mentorship</span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/big-hero.png" alt="Beauty Industry Group — brand websites" />
+    </div>
+  </section>
+
+  <!-- OVERVIEW BOX -->
+  <div class="overview-wrap">
+    <div class="overview-box">
+      <svg class="box-border" viewBox="0 0 1186 236" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path vector-effect="non-scaling-stroke" d="M1158.02 2C1158.53 16.6689 1170.33 28.4655 1185 28.9805V208.019C1170.33 208.533 1158.53 220.331 1158.02 235H28.9805C28.4655 220.331 16.6689 208.533 2 208.019V28.9805C16.6689 28.4655 28.4655 16.6689 28.9805 2H1158.02Z" stroke="#3a3835" stroke-width="1.5"/>
+      </svg>
+      <div>
+        <div class="overview-label">Overview</div>
+        <p class="overview-text">Beauty Industry Group is a portfolio company managing 10 hair extension brands across direct-to-consumer and professional market segments. When I joined as a contractor, each brand was operating in isolation — no shared components, no unified research process. I was promoted to UI/UX Design Lead to change that.</p>
+      </div>
+      <div>
+        <div class="meta-group">
+          <div class="meta-label">My Role</div>
+          <div class="meta-val">UI/UX Design Lead, UX Research, Design Systems, Mentorship</div>
+        </div>
+        <div class="meta-group">
+          <div class="meta-label">Team</div>
+          <div class="meta-val">Lead + 2 Designers (1 mentee)</div>
+        </div>
+        <div class="meta-group">
+          <div class="meta-label">Duration</div>
+          <div class="meta-val">Mar 2023 – Jun 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CHALLENGE -->
+  <section class="cs-section">
+    <div class="eyebrow">The Challenge</div>
+    <h2 class="section-title">10 brands. No shared design language.</h2>
+    <p class="section-body">Each brand had a unique identity, customer base, and price point — from DTC consumers to professional stylists. Every project started from scratch because there were no shared components. No standardized research process meant design decisions were based on assumptions, not evidence.</p>
+    <div class="findings">
+      <div class="findings-label">Key Findings</div>
+      <div class="finding"><span class="finding-n">1</span><span class="finding-t">No shared components — every site redesign started from zero</span></div>
+      <div class="finding"><span class="finding-n">2</span><span class="finding-t">Design decisions based on assumptions, no consistent research process</span></div>
+      <div class="finding"><span class="finding-n">3</span><span class="finding-t">Team scaling with an incoming designer who needed onboarding and mentorship</span></div>
+      <div class="finding"><span class="finding-n">4</span><span class="finding-t">10 brands with unique visual identities needed a system that could flex for each</span></div>
+    </div>
+  </section>
+
+  <!-- INSIGHT BANNER -->
+  <div class="insight" style="margin-bottom: 0;">
+    <p>How might we simplify the enrollment process so new distributors can complete it confidently<br>— on any device, without a mentor?</p>
+  </div>
+
+  <div class="divider" style="margin-top: 64px;"></div>
+
+  <!-- SOLUTION -->
+  <section class="cs-section">
+    <div class="eyebrow">The Solution</div>
+    <h2 class="section-title">Build the foundation first, then the brands.</h2>
+    <p class="section-body">The answer was a unified design system with responsive, reusable components that supported brand-specific workflows. Each brand could express its own visual identity while drawing from shared, production-tested foundations — eliminating redundant work across every project.</p>
+    <div class="solution-img">
+      <img src="images/big-solution.png" alt="Beauty Industry Group — design system" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- THE WORK — 4 cards with one connected border -->
+  <section class="cs-section">
+    <div class="eyebrow">The Work</div>
+    <h2 class="section-title">System • Research • Launch • Repeat</h2>
+    <p class="section-body">Every brand had unique needs, but the underlying UX problems were the same. I built the infrastructure once and made it work for all 10.</p>
+
+    <div class="work-cards-wrap">
+      <div class="work-cards-grid">
+        <div class="work-card">
+          <svg class="card-svg" viewBox="0 0 492 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path vector-effect="non-scaling-stroke" d="M466 2C466.5 11.5 474.5 19 484 19V181C474.5 181 466.5 188.5 466 198H26C25.5 188.5 17.5 181 8 181V19C17.5 19 25.5 11.5 26 2H466Z" stroke="#3a3835" stroke-width="1.5"/></svg>
+          <div class="card-num">01 · Design System</div>
+          <div class="card-title">One foundation. Ten expressions.</div>
+          <div class="card-body">Built a design system with responsive, reusable components — buttons, cards, nav, PDP layouts — with brand-specific theming on shared foundations. More than doubled production speed.</div>
+        </div>
+        <div class="work-card">
+          <svg class="card-svg" viewBox="0 0 492 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path vector-effect="non-scaling-stroke" d="M466 2C466.5 11.5 474.5 19 484 19V181C474.5 181 466.5 188.5 466 198H26C25.5 188.5 17.5 181 8 181V19C17.5 19 25.5 11.5 26 2H466Z" stroke="#3a3835" stroke-width="1.5"/></svg>
+          <div class="card-num">02 · Research Program</div>
+          <div class="card-title">Grounded in real behavior.</div>
+          <div class="card-body">Created and ran regular focus group sessions connecting brand stakeholders with consumers. Insights fed each brand's long-term UX roadmap — replacing guesswork with real user data.</div>
+        </div>
+        <div class="work-card">
+          <svg class="card-svg" viewBox="0 0 492 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path vector-effect="non-scaling-stroke" d="M466 2C466.5 11.5 474.5 19 484 19V181C474.5 181 466.5 188.5 466 198H26C25.5 188.5 17.5 181 8 181V19C17.5 19 25.5 11.5 26 2H466Z" stroke="#3a3835" stroke-width="1.5"/></svg>
+          <div class="card-num">03 · Insights Framework</div>
+          <div class="card-title">Insights that didn't stay siloed.</div>
+          <div class="card-body">Developed a scalable framework for cultivating research across all 10 brands — so insights became a shared resource informing the entire customer journey, not one-off findings.</div>
+        </div>
+        <div class="work-card">
+          <svg class="card-svg" viewBox="0 0 492 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path vector-effect="non-scaling-stroke" d="M466 2C466.5 11.5 474.5 19 484 19V181C474.5 181 466.5 188.5 466 198H26C25.5 188.5 17.5 181 8 181V19C17.5 19 25.5 11.5 26 2H466Z" stroke="#3a3835" stroke-width="1.5"/></svg>
+          <div class="card-num">04 · Mentorship</div>
+          <div class="card-title">Building the team as work scaled.</div>
+          <div class="card-body">Onboarded and mentored an incoming UX designer — establishing design and project management best practices that kept quality consistent as the team and brand count grew.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <div class="nda-wrap">
+        <span class="nda-tag">NDA</span>
+        <span class="nda-text">Additional visuals protected under non-disclosure. Available to discuss in detail during interview.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS — orange bg -->
+  <section class="stats-section">
+    <div class="stats-eyebrow">Outcome</div>
+    <div class="stats-headline">The numbers behind the system.</div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">10</div>
+        <div class="stat-text">Hair extension brands unified under a single design system</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8</div>
+        <div class="stat-text">Brand websites designed and launched</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2x</div>
+        <div class="stat-text">Increase in team production speed project to project</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-text">Unified research program serving all 10 brands simultaneously</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="reflection">
+    <div class="eyebrow">Reflection</div>
+    <h2 class="section-title" style="max-width:800px;">The hardest part wasn't building the system. It was getting 10 brands to trust it.</h2>
+    <p class="section-body" style="margin-top:16px;">Each brand had its own stakeholders, opinions, and history. The design system only worked because I involved brand teams early — showing them how shared foundations actually gave them more control over their identity, not less. The research program had the same dynamic: people had to see the value before they'd participate. Once they did, it became the most requested resource across the company.</p>
+  </section>
+
+  <!-- BRAND SHOWCASE -->
+  <section class="showcase-section">
+    <div class="showcase-header">
+      <div class="showcase-eyebrow">Brand Showcase</div>
+      <div class="showcase-title">Selected live brand sites.</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-item">
+        <a href="https://donnabellahair.com/" target="_blank" rel="noopener">
+          <div class="brand-img">
+            <img src="images/big-donna-bella-site.png" alt="Donna Bella Hair" />
+          </div>
+        </a>
+        <div class="brand-name">Donna Bella</div>
+        <div class="brand-sub">DTC | Hair Extensions</div>
+      </div>
+      <div class="brand-item">
+        <a href="https://www.luxyhair.com/" target="_blank" rel="noopener">
+          <div class="brand-img">
+            <img src="images/big-luxy-site.png" alt="Luxy Hair" />
+          </div>
+        </a>
+        <div class="brand-name">Luxy Hair</div>
+        <div class="brand-sub">DTC | Hair Extensions</div>
+      </div>
+      <div class="brand-item">
+        <a href="https://www.bellamihair.com/" target="_blank" rel="noopener">
+          <div class="brand-img">
+            <img src="images/big-bellamie-site.png" alt="Bellamie Hair" />
+          </div>
+        </a>
+        <div class="brand-name">Bellamie Hair</div>
+        <div class="brand-sub">DTC + Pro | Premium Extensions</div>
+      </div>
+      <div class="brand-item">
+        <a href="https://halocouture.com/" target="_blank" rel="noopener">
+          <div class="brand-img">
+            <img src="images/big-halo-site.png" alt="Halo Couture" />
+          </div>
+        </a>
+        <div class="brand-name">Halo</div>
+        <div class="brand-sub">DTC | Halo Extensions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <div class="next-row">
+    <div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">ProLook Sports — Uniform Customizer</div>
+    </div>
+    <a href="prolook.html" class="btn">View Case Study</a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>I'd love to build something great with you.</h2>
+    <p>Open to new opportunities — UX Design Lead, Senior Product Designer, and the right team.</p>
+    <a href="mailto:keykovelazquez@gmail.com" class="btn" style="width:fit-content;margin-top:8px">Let's Chat</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span>Keyko Velazquez</span>
+      <span style="opacity:0.4">© 2025</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="mailto:keykovelazquez@gmail.com">keykovelazquez@gmail.com</a>
+      <span class="fdiv"></span>
+      <a href="https://linkedin.com/in/keykovelazquez" target="_blank">LinkedIn</a>
+      <span class="fdiv"></span>
+      <a href="index.html#work">Work</a>
+      <span class="fdiv"></span>
+      <a href="index.html#about">About</a>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keyko Velazquez — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f1eee4;
+      --dark: #444240;
+      --orange: #e94f2d;
+      --border: #e6e6e6;
+      --body-dark: #43413f;
+      --shadow: #292827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 68px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 88px;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--dark);
+    }
+
+    .nav-logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--dark);
+    }
+
+    .logo-monogram {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.2px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--dark);
+      flex-shrink: 0;
+    }
+
+    .logo-wordmark {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: -0.1px;
+    }
+
+    .logo-wordmark strong {
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.6; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--orange);
+      color: #f1eee4 !important;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      height: 35px;
+      padding: 0 18px;
+      border-radius: 7.8px;
+      border: 0.648px solid white;
+      box-shadow: 0 2.6px 0 var(--shadow);
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover { opacity: 0.88; }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 68px;
+      position: relative;
+      height: 888px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero-headline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      font-size: clamp(60px, 11.5vw, 200px);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: var(--dark);
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-portrait {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 80px;
+      width: 30vw;
+      max-width: 427px;
+      min-width: 280px;
+      height: 645px;
+      overflow: hidden;
+      border-radius: 214px;
+    }
+
+    .hero-portrait img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      mix-blend-mode: multiply;
+    }
+
+    /* fade-out mask at bottom of portrait */
+    .hero-portrait::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, var(--cream) 100%);
+      pointer-events: none;
+    }
+
+    /* gradient fade at the bottom of the hero */
+    .hero-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+      pointer-events: none;
+    }
+
+    /* ── TAGLINE BANNER ── */
+    .tagline-banner {
+      background: var(--orange);
+      padding: 24px 8px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .tagline-banner p {
+      font-family: 'Inter', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.7;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    /* ── CASE STUDY SECTION ── */
+    .case-section {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+    }
+
+    .case-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 120px;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      width: 100%;
+    }
+
+    .case-inner.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .case-text {
+      flex: 0 0 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .case-client {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--orange);
+      white-space: pre;
+    }
+
+    .case-title {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+
+    .case-desc {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--body-dark);
+      line-height: 1.6;
+    }
+
+    .case-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 452px;
+      position: relative;
+    }
+
+    .case-image img {
+      max-width: 100%;
+      max-height: 452px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .case-divider {
+      height: 1px;
+      background: var(--orange);
+      margin: 0 0 0 640px;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 60px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .cta-section h2 {
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.3;
+      max-width: 651px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--cream);
+      max-width: 651px;
+      opacity: 0.8;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: 20px 28px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-left span {
+      font-size: 16px;
+      color: var(--dark);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-right a,
+    .footer-right span {
+      font-size: 16px;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .footer-right a:hover { opacity: 0.6; }
+
+    .footer-divider {
+      display: inline-block;
+      width: 4px;
+      height: 16px;
+      border-left: 2px solid var(--dark);
+    }
+
+    /* ── PLACEHOLDER MOCKUPS (until you swap in real images) ── */
+    .mockup-placeholder {
+      width: 100%;
+      max-width: 580px;
+      height: 380px;
+      background: rgba(68,66,64,0.06);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(68,66,64,0.3);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px dashed rgba(68,66,64,0.15);
+    }
+
+    /* ── HERO PORTRAIT PLACEHOLDER ── */
+    .portrait-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(68,66,64,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(68,66,64,0.3);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+      <img src="images/keyko-logo.png" alt="keyko.velazquez" style="height:24px;width:auto;display:block;" />
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="mailto:keykovelazquez@gmail.com" class="btn" style="color:#f1eee4;">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-headline">Product Design</div>
+
+    <div class="hero-portrait">
+      <img src="images/portrait.png" alt="Keyko Velazquez" />
+    </div>
+
+    <div class="hero-fade"></div>
+  </section>
+
+  <!-- ── TAGLINE BANNER ── -->
+  <div style="padding: 0 22px; background: var(--cream);">
+    <div class="tagline-banner">
+      <p>I'm Keyko, I elevate products through human-centered design and purposeful storytelling. I fight for the user, always.</p>
+    </div>
+  </div>
+
+  <!-- ── CASE STUDY 1: Beauty Industry Group ── -->
+  <section class="case-section" id="work">
+    <div class="case-inner">
+      <div class="case-text">
+        <span class="case-client">Beauty Industry Group</span>
+        <h2 class="case-title">10 Brands.<br>1 System.<br>8 Sites.</h2>
+        <p class="case-desc">Led UX across a portfolio of 10 hair extension brands. Built a unified design system from the ground up, established a company-wide research program, and launched 8 brand websites — more than doubling team production speed.</p>
+        <a href="beauty-industry.html" class="btn" style="width:fit-content">View Case Study</a>
+      </div>
+      <div class="case-image">
+        <img src="images/beauty-mockup.png" alt="Beauty Industry Group — 10 Brands, 1 System, 8 Sites" style="max-width:100%;max-height:452px;object-fit:contain;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE STUDY 2: Unicity ── -->
+  <section class="case-section">
+    <div class="case-inner reverse">
+      <div class="case-text">
+        <span class="case-client">Unicity International</span>
+        <h2 class="case-title">Distributor<br>Enrollment<br>Redesign</h2>
+        <p class="case-desc">Redesigned an enrollment flow that was actively working against its own users — irrelevant steps, no mobile support, high drop-off. Reduced abandonment by 46% within one quarter of launch.</p>
+        <a href="unicity.html" class="btn" style="width:fit-content">View Case Study</a>
+      </div>
+      <div class="case-image">
+        <img src="images/unicity-mockup.png" alt="Unicity — Distributor Enrollment Redesign" style="max-width:100%;max-height:452px;object-fit:contain;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- thin orange accent line above 3rd case study -->
+  <div class="case-divider"></div>
+
+  <!-- ── CASE STUDY 3: ProLook / Uniform Customizer ── -->
+  <section class="case-section">
+    <div class="case-inner">
+      <div class="case-text">
+        <span class="case-client">ProLook Sports  ·  NDA</span>
+        <h2 class="case-title">Uniform<br>Customizer</h2>
+        <p class="case-desc">Reps were losing sales to competitors while waiting days for design revisions. Led UX on a real-time 3D uniform customizer — giving reps the ability to close deals in the room, on the first visit with the coach.</p>
+        <a href="prolook.html" class="btn" style="width:fit-content">View Case Study</a>
+      </div>
+      <div class="case-image">
+        <img src="images/prolook-mockup.png" alt="ProLook Sports — Uniform Customizer" style="max-width:100%;max-height:452px;object-fit:contain;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section" id="about">
+    <h2>I'd love to build something great with you.</h2>
+    <p>Open to new opportunities — UX Design Lead, Senior Product Designer, and the right team.</p>
+    <a href="mailto:keykovelazquez@gmail.com" class="btn" style="width:fit-content; margin-top:4px">Let's Chat</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-left">
+      <span>Keyko Velazquez</span>
+      <span style="opacity:0.4">© 2025</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:keykovelazquez@gmail.com">keykovelazquez@gmail.com</a>
+      <span class="footer-divider"></span>
+      <a href="https://linkedin.com/in/keykovelazquez" target="_blank">LinkedIn</a>
+      <span class="footer-divider"></span>
+      <a href="#work">Work</a>
+      <span class="footer-divider"></span>
+      <a href="#about">About</a>
+    </div>
+  </footer>
+
+</body>
+</html>

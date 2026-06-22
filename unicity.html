@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unicity — Distributor Enrollment Redesign | Keyko Velazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f1eee4;
+      --dark: #3a3835;
+      --orange: #e94f2d;
+      --border: #dddad2;
+      --body: #5a5855;
+      --label: #9b9690;
+      --shadow: #292827;
+      --bg-dark: #2a2826;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 56px;
+      background: var(--cream); border-bottom: 1px solid var(--dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-monogram {
+      width: 22px; height: 22px; border-radius: 50%; border: 1.2px solid var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; font-weight: 600; color: var(--dark); flex-shrink: 0;
+    }
+    .logo-wordmark { font-size: 14px; font-weight: 400; color: var(--dark); }
+    .logo-wordmark strong { font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; color: var(--dark); text-decoration: none; }
+    .nav-links a:hover { opacity: 0.6; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--orange); color: #f1eee4 !important;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; text-decoration: none;
+      height: 33px; padding: 0 16px; border-radius: 7px;
+      border: 0.6px solid rgba(255,255,255,0.4);
+      box-shadow: 0 2px 0 var(--shadow); cursor: pointer; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+
+    /* HERO */
+    .hero {
+      padding: 96px 60px 0;
+      display: grid; grid-template-columns: 520px 1fr;
+      gap: 60px; align-items: center; min-height: 340px;
+    }
+    .hero-left {}
+    .hero-title {
+      font-size: 44px; font-weight: 700; color: var(--dark);
+      line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 20px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; font-weight: 500; color: var(--cream);
+      background: var(--orange); border-radius: 100px; padding: 4px 12px;
+    }
+    .hero-right {
+      display: flex; align-items: flex-end; justify-content: flex-end;
+    }
+    .hero-laptop {
+      width: 100%; max-width: 680px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-laptop img { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .hero-laptop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* OVERVIEW BOX */
+    .overview-box {
+      margin: 0 60px;
+      border: none;
+      padding: 40px 48px;
+      display: grid; grid-template-columns: 1fr 320px;
+      gap: 60px;
+      background: transparent;
+      position: relative;
+    }
+    .overview-svg-border {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: block;
+    }
+    .overview-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+    }
+    .overview-text {
+      font-size: 14px; color: var(--body); line-height: 1.7;
+    }
+    .overview-meta { display: flex; flex-direction: column; gap: 16px; }
+    .meta-row {}
+    .meta-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 4px;
+    }
+    .meta-val { font-size: 13px; color: var(--dark); line-height: 1.5; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 0 60px; }
+
+    /* SECTION */
+    .cs-section { padding: 64px 60px; }
+    .eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 34px; font-weight: 700; color: var(--dark);
+      line-height: 1.2; letter-spacing: -0.8px; margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .section-body {
+      font-size: 15px; color: var(--body); line-height: 1.7; max-width: 1000px;
+    }
+
+    /* CHALLENGE SCREENSHOTS */
+    .screenshot-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 36px;
+    }
+    .screenshot-box {
+      border-radius: 10px; overflow: hidden;
+    }
+    .screenshot-box img { width: 100%; height: auto; display: block; }
+
+    /* FINDINGS */
+    .findings { margin-top: 32px; max-width: 760px; }
+    .findings-label {
+      font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 12px;
+    }
+    .finding {
+      display: flex; gap: 18px; align-items: baseline;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .finding:first-of-type { border-top: 1px solid var(--border); }
+    .finding-n { font-size: 14px; font-weight: 700; color: var(--orange); flex-shrink: 0; }
+    .finding-t { font-size: 14px; color: var(--dark); line-height: 1.5; }
+
+    /* INSIGHT BANNER */
+    .insight {
+      margin: 0 60px 64px;
+      background: var(--orange); border-radius: 8px;
+      padding: 26px 40px; text-align: center;
+    }
+    .insight p {
+      font-size: 17px; font-weight: 500; font-style: italic;
+      color: #f1eee4; line-height: 1.6;
+    }
+
+    /* SOLUTION */
+    .solution-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start; margin-top: 32px;
+    }
+    .solution-img {
+      border-radius: 10px; overflow: hidden;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .solution-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* PROCESS ROWS */
+    .process-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding: 40px 0; border-bottom: 1px solid var(--border);
+    }
+    .process-row:last-child { border-bottom: none; }
+    .process-row.reverse { direction: rtl; }
+    .process-row.reverse > * { direction: ltr; }
+    .process-num {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--label); margin-bottom: 8px;
+    }
+    .process-title {
+      font-size: 20px; font-weight: 700; color: var(--dark);
+      margin-bottom: 12px; line-height: 1.3;
+    }
+    .process-body { font-size: 14px; color: var(--body); line-height: 1.7; }
+    .process-img {
+      border-radius: 10px; overflow: hidden;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .process-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .process-img-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--label); margin-top: 8px;
+      text-align: center;
+    }
+
+    /* STATS */
+    .stats-section { background: var(--bg-dark); padding: 64px 60px; }
+    .stats-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--label); margin-bottom: 36px;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stat-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 28px 24px;
+    }
+    .stat-num {
+      font-size: 56px; font-weight: 700; color: var(--orange);
+      line-height: 1; letter-spacing: -2px; margin-bottom: 12px;
+    }
+    .stat-text { font-size: 13px; color: rgba(241,238,228,0.5); line-height: 1.55; }
+
+    /* REFLECTION */
+    .reflection { padding: 64px 60px; border-bottom: 1px solid var(--border); }
+
+    /* NEXT */
+    .next-row {
+      padding: 48px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .next-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--label); margin-bottom: 6px;
+    }
+    .next-title { font-size: 24px; font-weight: 700; color: var(--dark); letter-spacing: -0.4px; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--dark); padding: 60px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cta-section h2 { font-size: 30px; font-weight: 400; color: var(--cream); max-width: 600px; }
+    .cta-section p { font-size: 15px; color: rgba(241,238,228,0.7); max-width: 600px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--cream); border-top: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span, footer a { font-size: 14px; color: var(--dark); text-decoration: none; }
+    footer a:hover { opacity: 0.6; }
+    .fdiv { display: inline-block; width: 1px; height: 14px; background: var(--dark); opacity: 0.3; }
+
+    /* placeholder */
+    .ph {
+      width: 100%; height: 100%; min-height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(68,66,64,0.3);
+      text-align: center; padding: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/keyko-logo.png" alt="keyko.velazquez" style="height:24px;width:auto;display:block;" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:keykovelazquez@gmail.com" class="btn">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO: title left, laptop right -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">Distributor Enrollment Redesign</h1>
+      <p class="hero-sub">A redesign of Unicity's distributor enrollment process — removing irrelevant steps, introducing mobile support, and reducing drop-off by 46% within one quarter.</p>
+      <div class="tag-row">
+        <span class="tag">Research</span>
+        <span class="tag">UX/UI Design</span>
+        <span class="tag">Prototyping</span>
+        <span class="tag">Usability Testing</span>
+        <span class="tag">A/B Testing</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-laptop">
+        <img src="images/unicity-hero.png" alt="Unicity enrollment redesign — laptop mockup" />
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW BOX -->
+  <div style="padding: 48px 0 40px; overflow: visible;">
+    <div class="overview-box">
+      <svg class="overview-svg-border" viewBox="0 0 1186 236" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path vector-effect="non-scaling-stroke" d="M1158.02 2C1158.53 16.6689 1170.33 28.4655 1185 28.9805V208.019C1170.33 208.533 1158.53 220.331 1158.02 235H28.9805C28.4655 220.331 16.6689 208.533 2 208.019V28.9805C16.6689 28.4655 28.4655 16.6689 28.9805 2H1158.02Z" stroke="#444240" stroke-width="2"/>
+      </svg>
+      <div>
+        <div class="overview-label">Overview</div>
+        <p class="overview-text">Unicity International gives people the opportunity to build their own business by becoming distributors. The enrollment process is the front door — and it was broken. Distributors were asked to complete tasks irrelevant to enrollment, there was no mobile-friendly path, and new distributors without a mentor were abandoning the process entirely.</p>
+      </div>
+      <div class="overview-meta">
+        <div class="meta-row">
+          <div class="meta-label">My Role</div>
+          <div class="meta-val">User Research, UX/UI Design,<br>Prototyping, Usability Testing</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-label">Team</div>
+          <div class="meta-val">Solo Designer</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-label">Duration</div>
+          <div class="meta-val">Nov 2021 – Dec 2022</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CHALLENGE -->
+  <section class="cs-section">
+    <div class="eyebrow">The Challenge</div>
+    <h2 class="section-title">An enrollment process that worked against its own users.</h2>
+    <p class="section-body">The existing enrollment flow had an outdated design and was not built with users in mind. The flow required completing tasks irrelevant to enrollment. Unnecessary steps added friction at exactly the wrong moment, and the entire experience was desktop-only focus despite a mobile-first user base.</p>
+
+    <!-- Before/After screenshots -->
+    <div class="screenshot-row">
+      <div>
+        <div class="screenshot-box">
+          <img src="images/unicity-before-1.png" alt="Unicity before — original enrollment screen" />
+        </div>
+      </div>
+      <div>
+        <div class="screenshot-box">
+          <img src="images/unicity-before-2.png" alt="Unicity before — original enrollment screen 2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="findings">
+      <div class="findings-label">Key Findings</div>
+      <div class="finding"><span class="finding-n">1</span><span class="finding-t">Users were confused by steps disconnected from the enrollment goal — too many irrelevant tasks</span></div>
+      <div class="finding"><span class="finding-n">2</span><span class="finding-t">Mobile usage was high but the experience was entirely desktop-only</span></div>
+      <div class="finding"><span class="finding-n">3</span><span class="finding-t">New distributors without a mentor were dropping off at a significantly higher rate</span></div>
+      <div class="finding"><span class="finding-n">4</span><span class="finding-t">The visual design no longer aligned with Unicity's updated brand direction</span></div>
+    </div>
+  </section>
+
+  <!-- INSIGHT BANNER -->
+  <div class="insight">
+    <p>"How might we simplify the enrollment process so new distributors can complete it confidently — on any device, without a mentor?"</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SOLUTION -->
+  <section class="cs-section">
+    <div class="eyebrow">The Solution</div>
+    <h2 class="section-title">Every step had to earn its place.</h2>
+    <p class="section-body">I relied on information architecture principles to rebuild the flow from scratch, stripping irrelevant steps and restructuring the remaining content into a logical sequence. The product selection problem was solved by pitching a starter kit model with my PM: three tiers (Basic $40, Business Builder $1,299, Business Builder Pro $1,499) replacing a full product browse mid-flow. Built mobile-first.</p>
+    <div style="margin-top: 32px; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <img src="images/unicity-solution.png" alt="Unicity redesigned enrollment flow" style="width:100%;height:auto;display:block;border-radius:10px;" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROCESS -->
+  <section class="cs-section">
+    <div class="eyebrow">Process</div>
+    <h2 class="section-title">Research · Design · Test · Iterate</h2>
+
+    <div style="margin-top: 40px;">
+
+      <!-- Step 01 -->
+      <div class="process-row">
+        <div>
+          <div class="process-num">01 · Stakeholder Workshop</div>
+          <div class="process-title">Aligning on the problem</div>
+          <p class="process-body">I ran an analysis phase beginning with a stakeholder workshop to identify the most important challenges and confirm we were solving the right problem. Used Heuristic Analysis (NN Group), Behavior Analysis (Hotjar), and kept surfacing one insight: too many unnecessary steps.</p>
+        </div>
+        <div class="process-img" style="aspect-ratio: unset;">
+          <img src="images/unicity-research.png" alt="Stakeholder workshop" style="width:100%;height:auto;border-radius:10px;" />
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="process-row reverse">
+        <div>
+          <div class="process-num">02 · Mobile-First UI Design</div>
+          <div class="process-title">Rebuilding the flow from scratch</div>
+          <p class="process-body">With research validated I rebuilt the IA, stripping the flow to only what was essential. I started ideation with paper and pen using a mobile-first approach. Even with the simplified process, the product selection page still felt like a shop — which led to the starter kit solution.</p>
+        </div>
+        <div class="process-img" style="aspect-ratio: unset;">
+          <img src="images/unicity-mobile-first.png" alt="Mobile-first design — four phone mockups" style="width:100%;height:auto;border-radius:10px;" />
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="process-row">
+        <div>
+          <div class="process-num">03 · Usability Testing</div>
+          <div class="process-title">Validating with real distributors</div>
+          <p class="process-body">I ran scenario-based usability sessions with distributors — tasks like "sign up a new distributor and assign a sponsor." Results were strongly positive. One key fix: the starter kit layout was hard to read, requiring a redesign before A/B testing.</p>
+        </div>
+        <div class="process-img" style="aspect-ratio: unset;">
+          <img src="images/unicity-usability-test.png" alt="Usability testing — Product Page and Select Pack" style="width:100%;height:auto;border-radius:10px;" />
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="process-row reverse">
+        <div>
+          <div class="process-num">04 · A/B Testing</div>
+          <div class="process-title">Shipping with confidence</div>
+          <p class="process-body">7 A/B tests with in-house employees and distributors. Version A: vertical stack. Version B: horizontal scroll. 100% of participants completed the task with Version A. Only 42% with Version B. Version A shipped.</p>
+        </div>
+        <div class="process-img" style="aspect-ratio: unset;">
+          <img src="images/unicity-test.png" alt="A/B Testing — Test A and Test B" style="width:100%;height:auto;border-radius:10px;" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-eyebrow">Outcome · The data told the story clearly.</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">46%</div>
+        <div class="stat-text">Reduction in sign-up drop-off rate for new distributors without a mentor, within one quarter of launch</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-text">A/B task completion rate with Version A of the starter kit layout</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7</div>
+        <div class="stat-text">A/B tests conducted across in-house employees and live distributors</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="reflection">
+    <div class="eyebrow">Takeaway</div>
+    <h2 class="section-title">Reflection</h2>
+    <p class="section-body">Working on an existing product meant I could make precise assumptions and validate them through focused research. The result was a tightly scoped MVP that stayed within the goal. By thinking outside the obvious solution (just clean up the UI), we arrived at a structural change the company could actually support: the starter kit model.</p>
+  </section>
+
+  <!-- NEXT -->
+  <div class="next-row">
+    <div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">Beauty Industry Group — 10 Brands. 1 System. 8 Sites.</div>
+    </div>
+    <a href="beauty-industry.html" class="btn">View Case Study</a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>I'd love to build something great with you.</h2>
+    <p>Open to new opportunities — UX Design Lead, Senior Product Designer, and the right team.</p>
+    <a href="mailto:keykovelazquez@gmail.com" class="btn" style="width:fit-content; margin-top:8px">Let's Chat</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span>Keyko Velazquez</span>
+      <span style="opacity:0.4">© 2025</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="mailto:keykovelazquez@gmail.com">keykovelazquez@gmail.com</a>
+      <span class="fdiv"></span>
+      <a href="https://linkedin.com/in/keykovelazquez" target="_blank">LinkedIn</a>
+      <span class="fdiv"></span>
+      <a href="index.html#work">Work</a>
+      <span class="fdiv"></span>
+      <a href="index.html#about">About</a>
+    </div>
+  </footer>
+
+</body>
+</html>

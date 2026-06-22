@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProLook Sports — Uniform Customizer | Keyko Velazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f1eee4;
+      --dark: #444240;
+      --orange: #e94f2d;
+      --border: #dddad2;
+      --body: #595959;
+      --label: #9b9690;
+      --shadow: #292827;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 68px;
+      background: var(--cream); border-bottom: 1px solid var(--dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 88px; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-monogram {
+      width: 22px; height: 22px; border-radius: 50%; border: 1.2px solid var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; font-weight: 600; color: var(--dark); flex-shrink: 0;
+    }
+    .logo-wordmark { font-size: 15px; color: var(--dark); }
+    .logo-wordmark strong { font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { font-size: 13px; color: var(--dark); text-decoration: none; }
+    .nav-links a:hover { opacity: 0.6; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--orange); color: #f1eee4 !important;
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; text-decoration: none;
+      height: 35px; padding: 0 18px; border-radius: 7.8px;
+      border: 0.648px solid white; box-shadow: 0 2.6px 0 var(--shadow);
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+
+    /* HERO */
+    .hero {
+      padding: 108px 127px 60px;
+      display: grid; grid-template-columns: 575px 1fr;
+      gap: 60px; align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-title {
+      font-size: 52px; font-weight: 700; color: var(--dark);
+      line-height: 1.05; letter-spacing: -1.8px; margin-bottom: 20px;
+    }
+    .hero-sub { font-size: 18px; color: var(--dark); line-height: 1.65; margin-bottom: 24px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 11px; font-weight: 500; color: var(--cream);
+      background: var(--orange); border-radius: 100px; padding: 5px 14px;
+    }
+    .hero-img img { width: 100%; height: auto; display: block; }
+
+    /* NDA BANNER */
+    .nda-banner {
+      margin: 0 auto; max-width: 984px;
+      background: var(--orange); border: 2px solid #ffce6e;
+      border-radius: 6px; padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nda-banner-tag {
+      font-size: 20px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .nda-banner-text { font-size: 12px; font-weight: 600; color: white; line-height: 1.5; }
+
+    /* OVERVIEW BOX */
+    .overview-wrap { padding: 48px 127px 40px; }
+    .overview-box {
+      padding: 42px 75px;
+      display: grid; grid-template-columns: 1fr 183px;
+      gap: 107px; position: relative;
+    }
+    .box-border {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; pointer-events: none;
+    }
+    .overview-label {
+      font-size: 14px; font-weight: 600; color: var(--orange); margin-bottom: 12px;
+    }
+    .overview-text { font-size: 15px; color: var(--dark); line-height: 1.7; }
+    .meta-label {
+      font-size: 14px; font-weight: 600; color: var(--orange); margin-bottom: 4px;
+    }
+    .meta-val { font-size: 13px; color: var(--dark); line-height: 1.5; margin-bottom: 12px; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 0 127px; }
+
+    /* SECTION */
+    .cs-section { padding: 64px 220px; }
+    .eyebrow {
+      font-size: 14px; font-weight: 600; color: var(--orange); margin-bottom: 11px;
+    }
+    .section-title {
+      font-size: 32px; font-weight: 700; color: var(--dark);
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-body { font-size: 16px; color: var(--dark); line-height: 1.7; max-width: 1000px; }
+
+    /* INSIGHT BANNER */
+    .insight {
+      margin: 0 127px;
+      background: var(--orange); border-radius: 8px;
+      padding: 24px 8px; text-align: center;
+    }
+    .insight p {
+      font-size: 20px; font-weight: 700; color: #f1eee4;
+      line-height: 1.7; max-width: 928px; margin: 0 auto;
+    }
+
+    /* SOLUTION IMAGES - two monitor mockups side by side */
+    .solution-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-top: 32px;
+      padding: 0 127px;
+    }
+    .solution-img img { width: 100%; height: auto; display: block; }
+
+    /* CONTRIBUTION CARDS - 3 tall cards with SVG border */
+    .contribution-section { padding: 64px 127px; }
+    .cards-row {
+      display: flex; gap: 32px; margin-top: 36px;
+      justify-content: center;
+    }
+    .contrib-card {
+      width: 308px; height: 412px; position: relative;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .contrib-card-svg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; pointer-events: none;
+    }
+    .contrib-card-content {
+      position: absolute; top: 60px; left: 40px; width: 228px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .contrib-card-num {
+      font-size: 16px; font-weight: 600; color: var(--orange);
+      line-height: 1.44; white-space: pre-wrap;
+    }
+    .contrib-card-body { font-size: 14px; color: var(--body); line-height: 1.7; }
+
+    /* STATS */
+    .stats-section {
+      background: var(--orange); padding: 56px 127px;
+      position: relative;
+    }
+    .stats-eyebrow {
+      font-size: 14px; font-weight: 600; color: white; margin-bottom: 8px;
+    }
+    .stats-headline {
+      font-size: 32px; font-weight: 700; color: white;
+      margin-bottom: 48px;
+    }
+    .stats-grid {
+      display: flex; gap: 16px; justify-content: center;
+    }
+    .stat-card {
+      background: white; border-radius: 8px;
+      padding: 20px 20px; width: 314px; min-height: 160px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .stat-title {
+      font-size: 16px; font-weight: 600; color: var(--orange); line-height: 1.3;
+    }
+    .stat-text { font-size: 14px; font-weight: 400; color: var(--dark); line-height: 1.55; }
+
+    /* REFLECTION */
+    .reflection { padding: 64px 127px; border-bottom: 1px solid var(--border); }
+
+    /* NEXT */
+    .next-row {
+      padding: 48px 127px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .next-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--label); margin-bottom: 6px;
+    }
+    .next-title { font-size: 24px; font-weight: 700; color: var(--dark); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--dark); padding: 60px 127px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cta-section h2 { font-size: 30px; font-weight: 400; color: var(--cream); max-width: 600px; }
+    .cta-section p { font-size: 15px; color: rgba(241,238,228,0.7); max-width: 600px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--cream); border-top: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span, footer a { font-size: 14px; color: var(--dark); text-decoration: none; }
+    footer a:hover { opacity: 0.6; }
+    .fdiv { display: inline-block; width: 1px; height: 14px; background: var(--dark); opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/keyko-logo.png" alt="keyko.velazquez" style="height:24px;width:auto;display:block;" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:keykovelazquez@gmail.com" class="btn">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1 class="hero-title">Uniform Customizer</h1>
+      <p class="hero-sub">Reps were losing sales waiting days for design revisions. Built a real-time 3D uniform customizer so reps could customize uniforms live — closing deals on the first visit with the coach.</p>
+      <div class="tag-row">
+        <span class="tag">UX Design Lead</span>
+        <span class="tag">Design Systems</span>
+        <span class="tag">Multi-Brand</span>
+        <span class="tag">E-Commerce</span>
+        <span class="tag">Mentorship</span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/prolook-hero.png" alt="ProLook — Uniform Customizer" />
+    </div>
+  </section>
+
+  <!-- NDA BANNER -->
+  <div style="padding: 28px 127px;">
+    <div class="nda-banner">
+      <span class="nda-banner-tag">NDA</span>
+      <span class="nda-banner-text">Specific design screens and client-side details from this project cannot be shown publicly. The overview below reflects the nature and scope of the work.</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW BOX -->
+  <div class="overview-wrap">
+    <div class="overview-box">
+      <svg class="box-border" viewBox="0 0 1186 236" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path vector-effect="non-scaling-stroke" d="M1158.02 2C1158.53 16.6689 1170.33 28.4655 1185 28.9805V208.019C1170.33 208.533 1158.53 220.331 1158.02 235H28.9805C28.4655 220.331 16.6689 208.533 2 208.019V28.9805C16.6689 28.4655 28.4655 16.6689 28.9805 2H1158.02Z" stroke="#3a3835" stroke-width="1.5"/>
+      </svg>
+      <div>
+        <div class="overview-label">Overview</div>
+        <p class="overview-text">I was a project manager and UI designer on the QuickStrike team at ProLook, leading design on the Riddell Sports Uniform Customizer. I worked closely with engineering and product managers on the client side to ensure designs aligned with company goals and the engineering roadmap. Primary focus: Select Style, Select Cut, and Customize steps.</p>
+      </div>
+      <div>
+        <div class="meta-label">My Role</div>
+        <div class="meta-val">Project Manager, UI Designer, Product Development</div>
+        <div class="meta-label">Team</div>
+        <div class="meta-val">Cross-functional (ProLook + Riddell)</div>
+        <div class="meta-label">Duration</div>
+        <div class="meta-val">Apr 2017 – Nov 2021</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CHALLENGE -->
+  <section class="cs-section">
+    <div class="eyebrow">THE CHALLENGE</div>
+    <h2 class="section-title">Competitors were closing deals while reps waited for revisions.</h2>
+    <p class="section-body">While trying to make a sale to a school, the time from leaving the coach's office to sending specs to designers — waiting for initial designs, revisions (often 8+ rounds) — took far too long. Competitors were closing deals in the time ProLook took to send a first draft. Performance issues with existing internal tools made it worse.</p>
+  </section>
+
+  <!-- INSIGHT BANNER -->
+  <div class="insight">
+    <p>How might we give sales reps the ability to customize uniforms in real time with the coach — closing deals in the first meeting?</p>
+  </div>
+
+  <div class="divider" style="margin-top: 64px;"></div>
+
+  <!-- SOLUTION -->
+  <section class="cs-section">
+    <div class="eyebrow">THE SOLUTION</div>
+    <h2 class="section-title">Real-time. 3D. In the room.</h2>
+    <p class="section-body">Create a 3D online customizer that could be used in real time with the coach during the first meeting — allowing both to make design changes on the spot. No waiting. No email chains. No lost sales.</p>
+  </section>
+
+  <!-- SOLUTION IMAGES -->
+  <div class="solution-grid">
+    <div class="solution-img">
+      <img src="images/prolook-real-time-1.png" alt="ProLook uniform customizer — screen 1" />
+    </div>
+    <div class="solution-img">
+      <img src="images/prolook-real-time-2.png" alt="ProLook uniform customizer — screen 2" />
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top: 64px;"></div>
+
+  <!-- MY CONTRIBUTION -->
+  <section class="contribution-section">
+    <div class="eyebrow" style="padding: 0;">MY CONTRIBUTION</div>
+    <h2 class="section-title">From wireframes to engineering handoff.</h2>
+
+    <div class="cards-row">
+      <!-- Card 1 -->
+      <div class="contrib-card">
+        <svg class="contrib-card-svg" viewBox="0 0 308 412" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path vector-effect="non-scaling-stroke" d="M280 2C280.5 16.5 294 28 308 28V384C294 384 280.5 396 280 410H28C27.5 396 14 384 0 384V28C14 28 27.5 16.5 28 2H280Z" stroke="#3a3835" stroke-width="1.5"/>
+        </svg>
+        <div class="contrib-card-content">
+          <div class="contrib-card-num">01  UI Design — Select Style, Select Cut, Customize</div>
+          <div class="contrib-card-body">Led design across three core steps of the customizer flow. Created wireframes, high-fidelity designs, and annotations for engineering. Ensured alignment between visual design and technical feasibility at every stage.</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="contrib-card">
+        <svg class="contrib-card-svg" viewBox="0 0 308 412" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path vector-effect="non-scaling-stroke" d="M280 2C280.5 16.5 294 28 308 28V384C294 384 280.5 396 280 410H28C27.5 396 14 384 0 384V28C14 28 27.5 16.5 28 2H280Z" stroke="#3a3835" stroke-width="1.5"/>
+        </svg>
+        <div class="contrib-card-content">
+          <div class="contrib-card-num">02  Cross-team Collaboration</div>
+          <div class="contrib-card-body">Worked directly with ProLook engineering and Riddell product managers to align design decisions with technical constraints and business goals — bridging the gap between design intent and build feasibility throughout the project.</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="contrib-card">
+        <svg class="contrib-card-svg" viewBox="0 0 308 412" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path vector-effect="non-scaling-stroke" d="M280 2C280.5 16.5 294 28 308 28V384C294 384 280.5 396 280 410H28C27.5 396 14 384 0 384V28C14 28 27.5 16.5 28 2H280Z" stroke="#3a3835" stroke-width="1.5"/>
+        </svg>
+        <div class="contrib-card-content">
+          <div class="contrib-card-num">03  User Research & Testing</div>
+          <div class="contrib-card-body">Selected to produce wireframes and conduct user research and testing for the customizer — validating that designs met both project requirements and real customer needs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-eyebrow">IMPACT</div>
+    <div class="stats-headline">A tool that changed how ProLook closes sales.</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Real-time closing</div>
+        <div class="stat-text">Reps customize uniforms live in the first coach meeting — no more waiting for design turnaround</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">3D accuracy</div>
+        <div class="stat-text">Realistic 3D view reduces revision rounds by showing the final uniform before production</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Competitive edge</div>
+        <div class="stat-text">Direct response to increasing competition — a feature rivals couldn't match</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="reflection">
+    <div class="eyebrow">TAKEAWAYS</div>
+    <h2 class="section-title">Reflection</h2>
+    <p class="section-body" style="margin-top: 16px;">This project expanded my practice beyond pure UX into product development and cross-functional project management. Working directly with engineering on a complex interactive tool reinforced the importance of designer-engineer collaboration — and showed me how much better products get when both sides speak the same language early.</p>
+  </section>
+
+  <!-- NEXT -->
+  <div class="next-row">
+    <div>
+      <div class="next-label">Back to work</div>
+      <div class="next-title">View all case studies</div>
+    </div>
+    <a href="index.html#work" class="btn">View All Work</a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>I'd love to build something great with you.</h2>
+    <p>Open to new opportunities — UX Design Lead, Senior Product Designer, and the right team.</p>
+    <a href="mailto:keykovelazquez@gmail.com" class="btn" style="width:fit-content;margin-top:8px">Let's Chat</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span>Keyko Velazquez</span>
+      <span style="opacity:0.4">© 2025</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="mailto:keykovelazquez@gmail.com">keykovelazquez@gmail.com</a>
+      <span class="fdiv"></span>
+      <a href="https://linkedin.com/in/keykovelazquez" target="_blank">LinkedIn</a>
+      <span class="fdiv"></span>
+      <a href="index.html#work">Work</a>
+      <span class="fdiv"></span>
+      <a href="index.html#about">About</a>
+    </div>
+  </footer>
+
+</body>
+</html>
