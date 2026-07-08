@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Reps — 100 Day Fitness Tracker | Keyko Velazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f1eee4; color: #444240; font-family: 'Inter', sans-serif; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 88px; height: 68px;
+      background: #f1eee4; border-bottom: 1px solid #444240;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .logo img { height: 23px; display: block; }
+    nav ul { list-style: none; display: flex; gap: 30px; align-items: center; }
+    nav ul li a { text-decoration: none; color: #444240; font-size: 13px; font-weight: 400; }
+    nav ul li a.btn-contact {
+      background: #e94f2d; color: #fff; padding: 0 20px; height: 35px;
+      border-radius: 7.772px; font-weight: 700; font-size: 12px; text-transform: uppercase;
+      display: flex; align-items: center;
+      border: 0.648px solid #fff; box-shadow: 0px 2.591px 0px #292827;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 570px; padding: 0 127px; padding-top: 137px;
+      position: relative; overflow: hidden;
+    }
+    .hero-text { padding-right: 40px; }
+    .hero-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.24px;
+      color: #e94f2d; text-transform: uppercase; margin-bottom: 18px;
+      white-space: pre;
+    }
+    .hero h1 {
+      font-size: 52px; font-weight: 700; line-height: 1.1;
+      color: #444240; margin-bottom: 12px; width: 534px;
+    }
+    .hero-desc {
+      font-size: 18px; font-weight: 400; color: #444240;
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: #e94f2d; color: #fff; font-size: 12px; font-weight: 500;
+      padding: 6px 14px; border-radius: 12px; white-space: nowrap;
+    }
+    .hero-image-col {
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 0;
+    }
+    .hero-image-col img { width: 100%; max-width: 500px; display: block; }
+
+    /* OVERVIEW BOX */
+    .overview-wrapper {
+      margin: 40px auto 0; width: 1186px; max-width: calc(100% - 60px);
+      position: relative;
+    }
+    .overview-border {
+      background-image: url('images/Section_Border.svg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      display: flex; padding: 42px 75px;
+      gap: 107px;
+    }
+    .overview-left { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .overview-left .ov-label { font-size: 14px; font-weight: 600; color: #e94f2d; }
+    .overview-left p { font-size: 15px; color: #444240; line-height: 1.65; max-width: 660px; }
+    .overview-right { width: 183px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+    .overview-right .meta-block { display: flex; flex-direction: column; gap: 3px; }
+    .overview-right .meta-label { font-size: 14px; font-weight: 600; color: #e94f2d; }
+    .overview-right .meta-val { font-size: 13px; color: #444240; line-height: 1.5; }
+
+    /* CHALLENGE + AI SECTIONS */
+    .text-section {
+      width: 1000px; max-width: calc(100% - 80px);
+      margin: 0 auto; padding: 60px 0;
+      border-bottom: 1px solid #d9d5cc;
+    }
+    .section-label { font-size: 14px; font-weight: 600; color: #e94f2d; margin-bottom: 11px; }
+    .section-heading { font-size: 32px; font-weight: 700; color: #444240; margin-bottom: 16px; line-height: 1.2; }
+    .section-body { font-size: 16px; color: #444240; line-height: 1.7; }
+
+    /* 3 CAPABILITY CARDS */
+    .cards-wrapper {
+      width: 1000px; max-width: calc(100% - 80px);
+      margin: 0 auto; padding-bottom: 60px;
+    }
+    .cards-3 { display: flex; gap: 32px; }
+    .cap-card {
+      flex: 1; position: relative;
+      background-image: url('images/Section_Border.svg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      padding: 60px 40px 40px;
+      min-height: 328px;
+    }
+    .cap-card h4 { font-size: 16px; font-weight: 600; color: #e94f2d; margin-bottom: 16px; line-height: 23px; }
+    .cap-card p { font-size: 14px; color: #595959; line-height: 24px; }
+
+    /* PROCESS SECTION */
+    .process-wrapper {
+      width: 1220px; max-width: calc(100% - 40px);
+      margin: 0 auto; padding: 60px 0;
+    }
+    .process-header { margin-left: 11px; margin-bottom: 40px; }
+    .process-header .section-label { margin-bottom: 8px; }
+    .process-header h2 { font-size: 32px; font-weight: 700; color: #444240; }
+
+    /* Each process row */
+    .process-row {
+      display: grid; grid-template-columns: 480px 1fr;
+      gap: 40px; align-items: start;
+      padding: 40px 11px;
+    }
+    .process-row.reverse { grid-template-columns: 1fr 480px; }
+    .process-row.reverse .step-text { order: 2; }
+    .process-row.reverse .step-img { order: 1; }
+    .step-num { font-size: 14px; font-weight: 600; color: #444240; margin-bottom: 8px; white-space: pre; }
+    .step-text p.step-body { font-size: 14px; color: #444240; line-height: 1.65; margin-top: 0; }
+    .step-img { width: 100%; overflow: hidden; border-radius: 8px; }
+    .step-img img { width: 100%; display: block; border-radius: 8px; }
+
+    /* OUTCOME */
+    .outcome-wrapper {
+      width: 1000px; max-width: calc(100% - 80px);
+      margin: 0 auto; padding: 60px 0 40px;
+    }
+
+    /* DEPLOY PHONES */
+    .deploy-wrapper {
+      width: 1009px; max-width: calc(100% - 80px);
+      margin: 0 auto; padding: 20px 0 0;
+      overflow: hidden;
+    }
+    .deploy-wrapper img { width: 100%; display: block; }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: #e94f2d; padding: 36px 60px;
+      display: flex; justify-content: center; gap: 16px;
+      margin-top: 40px;
+    }
+    .stat-card {
+      background: #fff; border-radius: 8px;
+      width: 314px; height: 130px; padding: 16px 43px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .stat-num { font-size: 24px; font-weight: 600; color: #e94f2d; }
+    .stat-desc { font-size: 18px; color: #595959; line-height: 25px; }
+
+    /* REFLECTION */
+    .reflection-wrapper {
+      width: 1000px; max-width: calc(100% - 80px);
+      margin: 0 auto; padding: 60px 0 80px;
+    }
+    .reflection-wrapper .section-label { margin-bottom: 4px; color: #e94f2d; }
+    .reflection-wrapper h2 { font-size: 32px; font-weight: 700; color: #444240; margin-bottom: 24px; }
+    .reflection-wrapper p { font-size: 16px; color: #444240; line-height: 1.75; }
+
+    /* FOOTER */
+    .footer-cta-bar {
+      background: #444240; padding: 60px 88px 40px;
+    }
+    .footer-cta-bar h2 { font-size: 32px; font-weight: 400; color: #f1eee4; margin-bottom: 10px; }
+    .footer-cta-bar p { font-size: 16px; color: #9a9690; margin-bottom: 24px; max-width: 500px; }
+    .btn-chat {
+      display: inline-flex; align-items: center;
+      background: #e94f2d; color: #f1eee4;
+      padding: 0 16px; height: 35px; border-radius: 7.772px;
+      font-weight: 700; font-size: 12px; text-transform: uppercase;
+      text-decoration: none; border: 0.648px solid #f1eee4;
+      box-shadow: 0px 2.591px 0px #292827;
+    }
+    footer {
+      background: #444240; border-top: 1px solid #5a5856;
+      padding: 0 24px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer span { font-size: 16px; color: #444240; }
+    .footer-links { display: flex; gap: 0; align-items: center; }
+    .footer-links a { font-size: 16px; color: #444240; text-decoration: none; }
+    .footer-sep {
+      width: 4px; height: 18px; border: 2px solid #444240;
+      margin: 0 10px; display: inline-block;
+    }
+    .footer-bottom-bar {
+      background: #f1eee4; padding: 0 24px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom-bar span, .footer-bottom-bar a {
+      font-size: 16px; color: #444240; text-decoration: none;
+    }
+    .footer-bottom-bar .footer-links a { color: #444240; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <a href="index.html"><img src="images/keyko-logo.png" alt="Keyko Velazquez" /></a>
+  </div>
+  <ul>
+    <li><a href="index.html">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="mailto:keykovelazquez@gmail.com" class="btn-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-label">AI-AUGMENTED DESIGN  ·  WEB APP</p>
+    <h1>100 Day Fitness Tracker</h1>
+    <p class="hero-desc">A 100-day fitness accountability app built in React/JSX and deployed live to GitHub Pages, designed, prototyped, and shipped using AI-augmented workflows including onboarding UX, workout timers, progress strips, and cross-tab navigation.</p>
+    <div class="tags">
+      <span class="tag">AI Engineering</span>
+      <span class="tag">React/JSX</span>
+      <span class="tag">Capacitor (iOS)</span>
+      <span class="tag">GitHub Pages</span>
+      <span class="tag">UI/UX Design</span>
+    </div>
+  </div>
+  <div class="hero-image-col">
+    <img src="images/daily-hero.png" alt="Daily Reps app hero" />
+  </div>
+</section>
+
+<!-- OVERVIEW BOX -->
+<div style="display:flex; justify-content:center; margin-top:48px; padding:0 127px;">
+  <div class="overview-border" style="width:100%; max-width:1186px;">
+    <div class="overview-left">
+      <p class="ov-label">Overview</p>
+      <p>Daily Reps is a 100-day fitness accountability app I designed and shipped solo, directing an AI-augmented workflow across UX, component architecture, and deployment. Built around a single constraint, 100 days, with UX patterns designed to make the streak feel real, I directed Claude through implementation and deployment to ship a live, working product, not a prototype.</p>
+    </div>
+    <div class="overview-right">
+      <div class="meta-block">
+        <span class="meta-label">My Role</span>
+        <span class="meta-val">AI-Augmented Designer &amp; Engineer, UX Design, Component Direction, Deployment</span>
+      </div>
+      <div class="meta-block">
+        <span class="meta-label">Team</span>
+        <span class="meta-val">Solo (AI-directed build)</span>
+      </div>
+      <div class="meta-block">
+        <span class="meta-label">Duration</span>
+        <span class="meta-val">June 2026 (3 weeks)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE CHALLENGE -->
+<div style="display:flex; justify-content:center; padding:0 220px;">
+  <div class="text-section">
+    <p class="section-label">THE CHALLENGE</p>
+    <h2 class="section-heading">100 days of accountability, designed to actually stick.</h2>
+    <p class="section-body">Most fitness apps fail users in one of two ways: they're either too complex to stay consistent with, or too simple to feel meaningful. Daily Reps was designed around a single powerful constraint — 100 days — with UX patterns built to make the streak feel real and worth protecting. The challenge was designing something that worked as both a product and a personal commitment device.</p>
+  </div>
+</div>
+
+<!-- HOW AI CHANGED THE BUILD -->
+<div style="display:flex; justify-content:center; padding:0 220px;">
+  <div class="text-section" style="border-bottom:none; padding-bottom:24px;">
+    <p class="section-label">HOW AI CHANGED THE BUILD</p>
+    <h2 class="section-heading">From wireframe to deployed app in a single workflow.</h2>
+    <p class="section-body">Daily Reps was built using an AI-augmented development process where I directed every design and engineering decision through Claude. The app exists as a single-file React/JSX application, deployed to GitHub Pages, and wrapped for iOS using Capacitor. This project proves that a designer who understands product thinking and can direct AI effectively can ship production-quality software.</p>
+  </div>
+</div>
+
+<!-- 3 CARDS -->
+<div style="display:flex; justify-content:center; padding:0 220px;">
+  <div class="cards-wrapper" style="padding-bottom:80px; padding-top:0;">
+    <div class="cards-3">
+      <div class="cap-card">
+        <h4>UX &amp; Product Design</h4>
+        <p>Onboarding flow, 100-day progress strip UI, workout timer interface, day navigation tabs, and dark-mode design tokens. All designed to spec and implemented.</p>
+      </div>
+      <div class="cap-card">
+        <h4>AI Engineering Direction</h4>
+        <p>Directed Claude to write, debug, and iterate all React/JSX code. Defined component hierarchy, state management approach, and cross-tab navigation architecture.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Deployment &amp; DevOps</h4>
+        <p>Managed GitHub repo, GitHub Actions CI/CD, npm build workflow, Capacitor iOS sync, and GitHub Pages deployment configuration end-to-end.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div style="display:flex; justify-content:center; padding: 0 100px;">
+  <div class="process-wrapper">
+    <div class="process-header">
+      <p class="section-label">PROCESS</p>
+      <h2>Design • Build • Test • Deploy • Iterate</h2>
+    </div>
+
+    <!-- Step 01 -->
+    <div class="process-row">
+      <div class="step-text">
+        <p class="step-num">01  Concept &amp; UX Mapping</p>
+        <p class="step-body">Defined the core loop: log reps → see streak → feel motivated to return. Mapped the onboarding UX flow, identified key delight moments (streak visualization, day completion animation), and wireframed the structure before writing code.</p>
+      </div>
+      <div class="step-img">
+        <img src="images/daily-process-1.png" alt="Concept and UX Mapping" />
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="process-row reverse">
+      <div class="step-text">
+        <p class="step-num">02  AI-Directed Development</p>
+        <p class="step-body">Used Claude to write the full React/JSX application component by component. Directed decisions on state management, local storage strategy, the 100-day visual strip, and workout timer countdown logic. Reviewed and iterated every output.</p>
+      </div>
+      <div class="step-img">
+        <img src="images/daily-process-2.png" alt="AI-Directed Development" />
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="process-row">
+      <div class="step-text">
+        <p class="step-num">03  Design System Implementation</p>
+        <p class="step-body">Applied Daily Reps design tokens (dark bg #0b0d10, gold #c9a23a, green #34c27b, blue #2e8dff) consistently across all components. Tested responsive layouts, dark mode integrity, and interaction states before deployment.</p>
+      </div>
+      <div class="step-img">
+        <img src="images/daily-process-3.png" alt="Design System Implementation" />
+      </div>
+    </div>
+
+    <!-- Step 04 -->
+    <div class="process-row reverse">
+      <div class="step-text">
+        <p class="step-num">04  Deploy &amp; iOS Packaging</p>
+        <p class="step-body">Deployed to GitHub Pages via npm build pipeline. Wrapped in Capacitor for iOS. Managed the full deploy workflow including Figma design file maintenance for the companion design system.</p>
+      </div>
+      <div class="step-img">
+        <img src="images/daily-process-4.png" alt="Deploy and iOS Packaging" />
+      </div>
+    </div>
+
+    <!-- Step 05 -->
+    <div class="process-row">
+      <div class="step-text">
+        <p class="step-num">05  Testing &amp; Iteration</p>
+        <p class="step-body">Every AI output got pressure-tested on a real iPhone. Caught and fixed the modal scroll bug (modal moved to app root to break out of parent overflow), corrected rest-day logic, resolved a variable initialization order causing a white screen, and stripped a hardcoded seed auto-completing days for new users.</p>
+      </div>
+      <div class="step-img">
+        <img src="images/daily-process-5.png" alt="Testing and Iteration" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OUTCOME -->
+<div style="display:flex; justify-content:center; padding:0 220px;">
+  <div class="outcome-wrapper">
+    <p class="section-label">Outcome</p>
+    <h2 class="section-heading">Deployed. Live. Built by a designer.</h2>
+    <p class="section-body">Daily Reps is deployed and live at keykovelazquez.github.io/daily-reps-app. The app features a full onboarding experience, 100-day progress tracker, workout timer, and cross-tab day navigation. It exists as a working product, not a prototype, not a mockup, demonstrating what's possible when design thinking and AI direction combine into a complete build cycle.</p>
+  </div>
+</div>
+
+<!-- DEPLOY PHONES IMAGE -->
+<div style="display:flex; justify-content:center; padding:0 220px 0;">
+  <div class="deploy-wrapper">
+    <img src="images/daily-deploy.png" alt="Daily Reps deployed — 5 phone mockups" />
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <span class="stat-num">LIVE</span>
+    <span class="stat-desc">Deployed to GitHub Pages</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">100</span>
+    <span class="stat-desc">Days Tracked with visual Strip UI</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">IOS</span>
+    <span class="stat-desc">Capacitor-packaged for App Store</span>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div style="display:flex; justify-content:center; padding:0 220px;">
+  <div class="reflection-wrapper">
+    <p class="section-label">TAKEAWAYS</p>
+    <h2>Reflection</h2>
+    <p>Daily Reps changed how I think about what a designer can build. By directing AI through every phase — from UX decisions to JSX component logic to deployment troubleshooting — I proved that the gap between design and engineering isn't a skills gap anymore. It's a thinking gap. The designer who can think in systems, communicate intent clearly, and evaluate output critically can ship software. That's the skill Daily Reps helped me own.</p>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta-bar">
+  <h2>I'd love to build something great with you.</h2>
+  <p>Open to new opportunities — UX Design Lead, Senior Product Designer, and the right team.</p>
+  <a href="mailto:keykovelazquez@gmail.com" class="btn-chat">Let's Chat</a>
+</div>
+
+<!-- FOOTER BOTTOM -->
+<div class="footer-bottom-bar">
+  <span>Keyko Velazquez &nbsp; © 2026</span>
+  <div class="footer-links">
+    <a href="mailto:keykovelazquez@gmail.com">Keykovelazquez@gmail.com</a>
+    <span class="footer-sep"></span>
+    <a href="https://linkedin.com/in/keykovelazquez" target="_blank">LinkedIn</a>
+    <span class="footer-sep"></span>
+    <a href="index.html">Work</a>
+    <span class="footer-sep"></span>
+    <a href="index.html#about">About</a>
+  </div>
+</div>
+
+</body>
+</html>
